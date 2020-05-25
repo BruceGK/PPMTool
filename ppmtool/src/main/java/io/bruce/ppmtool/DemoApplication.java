@@ -1,13 +1,13 @@
-package io.bruce.mtool;
+package io.bruce.ppmtool;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MtoolApplication {
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MtoolApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 
 }

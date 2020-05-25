@@ -1,10 +1,10 @@
-package io.bruce.mtool;
+package io.bruce.ppmtool;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MtoolApplicationTests {
+class DemoApplicationTests {
 
     @Test
     void contextLoads() {
