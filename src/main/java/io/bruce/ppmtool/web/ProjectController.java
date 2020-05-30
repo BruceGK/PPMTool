@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 @RestController
 @RequestMapping("/api/project")
 public class ProjectController {
@@ -20,13 +26,20 @@ public class ProjectController {
 
 
     @PostMapping("")
-    public ResponseEntity<Project> createNewProject(@Valid @RequestBody Project project, BindingResult result){
+    public ResponseEntity<?> createNewProject(@Valid @RequestBody Project project, BindingResult result){
 
         if(result.hasErrors()){
-            return new ResponseEntity<String>("Invalid Project Object", HttpStatus.BAD_REQUEST);
+            Map<String, String> errorMap = new HashMap<>();
+
+            for(FieldError error: result.getFieldErrors()){
+                errorMap.put(error.getField(), error.getDefaultMessage());
+            }
+            return new ResponseEntity<Map<String, String>>(errorMap, HttpStatus.BAD_REQUEST);
         }
 
+
+
         Project project1 = projectService.saveOrUpdateProject(project);
-        return new ResponseEntity<Project>(project, HttpStatus.CREATED);
+        return new ResponseEntity<Project>(project1, HttpStatus.CREATED);
     }
 }
