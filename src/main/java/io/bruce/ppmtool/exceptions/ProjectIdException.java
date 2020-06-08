@@ -1,4 +1,4 @@
-package io.agileintelligence.ppmtool.exceptions;
+package io.bruce.ppmtool.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
