@@ -3,6 +3,7 @@ package io.bruce.ppmtool.web;
 
 import io.bruce.ppmtool.domain.Project;
 import io.bruce.ppmtool.services.ProjectService;
+import io.brucee.ppmtool.services.MapValidationErrorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,5 +38,13 @@ public class ProjectController {
 
         Project project1 = projectService.saveOrUpdateProject(project);
         return new ResponseEntity<Project>(project1, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{projectId}")
+    public ResponseEntity<?> getProjectById(@PathVariable String projectId){
+
+        Project project = projectService.findProjectByIdentifier(projectId);
+
+        return new ResponseEntity<Project>(project, HttpStatus.OK);
     }
 }
